@@ -1,9 +1,8 @@
 import React from 'react';
+import OpenWeather from '../OpenWeather';
+import {TemperatureScale} from "./types";
 
-enum TemperatureScale {
-    Fahrenheit,
-    Celsius
-}
+
 
 type WeatherProps = {
     zip: string
@@ -23,25 +22,19 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
         units: TemperatureScale.Fahrenheit
     };
 
-    componentWillMount(): void {
+    componentDidMount(): void {
         const {zip} = this.props;
         this.getWeatherForecast(zip);
     }
 
     async getWeatherForecast(zip: string) {
         if(zip.length !== 5) return;
-        const { units } = this.state;
 
-        const OPEN_WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/forecast';
-        const API_KEY = '74d9bc317f6cb40688304324e3555d46';
+        let openWeather = new OpenWeather();
+        let forecast = await openWeather.getForecastByZipCode(zip);
 
-        let requestForecastUrl = OPEN_WEATHER_API_URL + `?zip=${zip},us&appid=${API_KEY}`;
-        requestForecastUrl += '&' + ((units === TemperatureScale.Fahrenheit) ? 'units=imperial': 'units=metric');
-
-        let forecast = await fetch(requestForecastUrl);
-        forecast = await forecast.json();
-
-        this.setState({forecast});
+        console.log(forecast);
+        //this.setState({forecast});
     }
 
     render() {
