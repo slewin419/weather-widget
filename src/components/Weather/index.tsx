@@ -1,7 +1,8 @@
 import React from 'react';
-import OpenWeather from '../OpenWeather';
+import './style/index.scss';
+import './style/weather-icons.min.css';
+import OpenWeather, {Forecast} from '../OpenWeather';
 import {TemperatureScale} from "./types";
-
 
 
 type WeatherProps = {
@@ -10,7 +11,7 @@ type WeatherProps = {
 
 type WeatherWidgetState = {
     zip: string,
-    forecast: any,
+    forecast: Forecast,
     units: TemperatureScale
 };
 
@@ -18,23 +19,49 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
 
     state: WeatherWidgetState = {
         zip: '',
-        forecast: null,
+        forecast: {} as Forecast,
         units: TemperatureScale.Fahrenheit
     };
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {zip} = this.props;
-        this.getWeatherForecast(zip);
+        this.getWeatherForecast(zip).then(forecast => this.setState({forecast}));
     }
 
-    async getWeatherForecast(zip: string) {
-        if(zip.length !== 5) return;
+    async getWeatherForecast(zip: string): Promise<Forecast> {
+        if (zip.length !== 5) return {} as Forecast;
 
         let openWeather = new OpenWeather();
-        let forecast = await openWeather.getForecastByZipCode(zip);
+        return await openWeather.getForecastByZipCode(zip);
+    }
 
-        console.log(forecast);
-        //this.setState({forecast});
+    renderWidget(forecast: Forecast) {
+        const todaysForecast = forecast.weather.shift();
+
+        return (
+            <div className="forecast__container">
+                <div className="forecast__panel forecast__panel--city">
+                    <div>{forecast.cityName}</div>
+                    <div>
+                        <i className={`wi wi-owm-${todaysForecast?.iconId}`}> </i>
+                    </div>
+                </div>
+                <div className="forecast__panel forecast__panel--today">
+                    <strong>TODAY</strong>
+                    <div className="forecast__temp">{todaysForecast?.temp}</div>
+                </div>
+                {
+                    forecast.weather.map((day, i) => {
+                        return (
+                            <div className="forecast__panel" key={`${day}${i}`}>
+                                <div>{day.dayOfWeek}</div>
+                                <div className="forecast__temp">{day.temp}</div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        )
     }
 
     render() {
@@ -43,29 +70,32 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
         return (
             <div className="weather-widget">
                 <div className="weather-widget__container">
-                    <form>
-                        <div>
+                    <form className="form">
+                        <div className="form__field">
                             <label htmlFor="zip">ZIP</label>
                             <input type="text"
+                                   id="zipCode"
                                    placeholder="Zip Code"
                                    defaultValue={this.props.zip}
                                    maxLength={5}
-                                   onChange={(e) => this.getWeatherForecast(e.target.value)}/>
+                                   onChange={(e) => this.handleChange(e.target.value)}/>
                         </div>
                         <div className="forecast">
-                            <div className="forecast__container">
-                                <h1>Forecast</h1>
-                                {forecast
-                                    ? <h2>{forecast.city.name}</h2>
-                                    : <h2>no</h2>
+                            {forecast && forecast.cityName
+                                ? this.renderWidget(forecast)
+                                : <h2>Loading...</h2>
                                 }
-                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         )
     }
+
+    private handleChange(value: string) {
+        this.getWeatherForecast(value).then(forecast => this.setState({forecast}));
+    }
+
 }
 
 export default Weather;

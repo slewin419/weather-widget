@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd4fa290-b6ca-44c7-adc7-9d6abd54c197" name="Default Changelist" comment="getWeatherData() works!">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/OpenWeather/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Weather/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="bd4fa290-b6ca-44c7-adc7-9d6abd54c197" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Shaun.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/font/weathericons-regular-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/font/weathericons-regular-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/font/weathericons-regular-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/font/weathericons-regular-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/font/weathericons-regular-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/style/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Weather/style/weather-icons.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/OpenWeather/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OpenWeather/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Weather/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Weather/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,15 +43,21 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Weather" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.SCSS" />
     <property name="ts.external.directory.path" value="C:\Users\Shaun\WebstormProjects\weather-widget\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Shaun\WebstormProjects\weather-widget\src\components\Weather" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Shaun\WebstormProjects\weather-widget\src\components\Weather\style" />
       <recent name="C:\Users\Shaun\WebstormProjects\weather-widget\src\components\Weather" />
     </key>
   </component>
@@ -82,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594411015111</updated>
-      <workItem from="1594411016830" duration="36499000" />
+      <workItem from="1594411016830" duration="56920000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1594430648430</created>
@@ -98,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594435610375</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="finish forecast data parsing method">
+      <created>1594505283423</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594505283423</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="getWeatherData() works!" />
-    <option name="LAST_COMMIT_MESSAGE" value="getWeatherData() works!" />
+    <MESSAGE value="finish forecast data parsing method" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish forecast data parsing method" />
   </component>
 </project>
