@@ -62,6 +62,10 @@
 	  align-items: center;
 	  display: flex;
 	  
+	  :last-child {
+		margin-left: auto;
+	  }
+	  
 	  label {
 		font-size: 1rem;
 		font-weight: bold;
