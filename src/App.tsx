@@ -7,7 +7,7 @@ import Weather from './components/Weather';
 function App() {
   return (
       <div>
-        <Weather zip={"32825"} />
+          <Weather zip={"3280"}/>
       </div>
   );
 }

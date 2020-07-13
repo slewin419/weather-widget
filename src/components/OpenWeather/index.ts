@@ -15,7 +15,7 @@ export interface OpenWeatherAPIResponse {
     cnt: number,
     cod: string,
     list: any[],
-    message: number
+    message: string
 }
 
 export interface Forecast {
@@ -29,17 +29,30 @@ const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 export default class OpenWeather {
 
     /**
-     *
-     * @param zip
+     * Get five day forecast by zip code from OpenWeatherMap.org API
+     * @param zipCode
      * @param units
      */
-    async getForecastByZipCode(zip: string, units: TemperatureScale = TemperatureScale.Fahrenheit): Promise<Forecast> {
+    async getForecastByZipCode(zipCode: string, units: TemperatureScale = TemperatureScale.Fahrenheit): Promise<Forecast> {
 
-        let requestUrl = API_URL + `?zip=${zip},us&appid=${API_KEY}`
-            + '&' + ((units === TemperatureScale.Fahrenheit) ? 'units=imperial': 'units=metric');
+        let requestUrl = API_URL +
+            `?zip=${zipCode},us` +
+            `&appid=${API_KEY}` +
+            '&' + ((units === TemperatureScale.Fahrenheit) ? 'units=imperial' : 'units=metric');
 
-        let response = await fetch(requestUrl);
-        let data = await response.json();
+        let data: OpenWeatherAPIResponse,
+            response;
+
+        try {
+            response = await fetch(requestUrl);
+            data = await response.json();
+        } catch (e) {
+            throw new Error(e);
+        }
+
+        if (data.cod === "404") {
+            throw new Error(data.message);
+        }
 
         return this.parseResponse(data);
     }
