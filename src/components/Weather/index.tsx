@@ -7,11 +7,11 @@ import {TemperatureScale} from "./types";
 
 
 type WeatherProps = {
-    zip: string
+    zipCode: string
 };
 
 type WeatherWidgetState = {
-    zip: string,
+    zipCode: string,
     forecast: Forecast,
     units: TemperatureScale,
     error: Error | null
@@ -20,29 +20,22 @@ type WeatherWidgetState = {
 class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
 
     state: WeatherWidgetState = {
-        zip: '',
+        zipCode: '',
         forecast: {} as Forecast,
         units: TemperatureScale.Fahrenheit,
         error: null
     };
 
-    async componentDidMount() {
-        const {zip} = this.props;
-        let forecast: Forecast;
-
-        try {
-            forecast = await this.getWeatherForecast(zip);
-            this.setState({forecast, error: null});
-        } catch (e) {
-            this.setState({error: e});
-        }
-    }
-
-    async getWeatherForecast(zipCode: string): Promise<Forecast> {
+    private static async getWeatherForecast(zipCode: string): Promise<Forecast> {
         if (zipCode.length !== 5) return {} as Forecast;
 
         let openWeather = new OpenWeather();
         return await openWeather.getForecastByZipCode(zipCode);
+    }
+
+    async componentDidMount() {
+        const {zipCode} = this.props;
+        this.updateForecast(zipCode);
     }
 
     render() {
@@ -57,9 +50,9 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
                             <input type="text"
                                    id="zipCode"
                                    placeholder="Zip Code"
-                                   defaultValue={this.props.zip}
+                                   defaultValue={this.props.zipCode}
                                    maxLength={5}
-                                   onChange={(e) => this.handleChange(e.target.value)}/>
+                                   onChange={(e) => this.updateForecast(e.target.value)}/>
                         </div>
                         <div className={`forecast  ${!forecast.cityName ? "forecast--loading" : ""}`}>
                             {forecast && forecast.cityName
@@ -73,6 +66,17 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
                 </div>
             </div>
         )
+    }
+
+    private async updateForecast(zipCode: string) {
+        let forecast: Forecast;
+
+        try {
+            forecast = await Weather.getWeatherForecast(zipCode);
+            this.setState({forecast, error: null});
+        } catch (e) {
+            this.setState({error: e});
+        }
     }
 
     renderWidget(forecast: Forecast) {
@@ -102,17 +106,6 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
                 }
             </div>
         )
-    }
-
-    private async handleChange(value: string) {
-        let forecast: Forecast;
-
-        try {
-            forecast = await this.getWeatherForecast(value);
-            this.setState({forecast, error: null});
-        } catch (e) {
-            this.setState({error: e});
-        }
     }
 
 }
