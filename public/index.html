@@ -25,19 +25,65 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Weather Widget</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+      #toggle-sound-btn {
+        display: none;
+        text-align: center;
+        font-size: 3rem;
+        cursor: pointer;
+      }
+
+      #background-music-player {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+  </div>
+  <audio controls id="background-music-player" loop muted="muted" autoplay="true">
+    <source src="music.mp3" type="audio/mp3"/>
+  </audio>
+  <div style="text-align: center">
+    <i id="toggle-sound-btn" class="fa fa-volume-off" aria-hidden="true"></i>
+  </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <!--
+    This HTML file is a template.
+    If you open it directly in the browser, you will see an empty page.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    You can add webfonts, meta tags, or analytics to this file.
+    The build step will place the bundled scripts into the <body> tag.
+
+    To begin the development, run `npm start` or `yarn start`.
+    To create a production bundle, use `npm run build` or `yarn build`.
+  -->
+  <script>
+    (function () {
+
+      var toggleSoundBtn = document.getElementById('toggle-sound-btn'),
+              backgroundMusicPlayer = document.getElementById('background-music-player');
+
+      //Sometimes this works and sometimes in doesnt  ¯\_(ツ)_/¯
+      backgroundMusicPlayer.addEventListener("canplay", function () {
+        toggleSoundBtn.style.display = "inline";
+        toggleSoundBtn.addEventListener('click', function () {
+          if (backgroundMusicPlayer.muted) {
+            backgroundMusicPlayer.muted = false;
+            toggleSoundBtn.className = "fa fa-volume-up";
+          } else {
+            backgroundMusicPlayer.muted = true;
+            toggleSoundBtn.className = "fa fa-volume-off";
+          }
+        });
+
+        backgroundMusicPlayer.play();
+      });
+    })();
+
+  </script>
   </body>
 </html>

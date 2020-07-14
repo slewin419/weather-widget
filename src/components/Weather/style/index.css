@@ -18,26 +18,43 @@
       align-items: stretch;
       background: #ffffff;
       display: flex;
-      min-height: 6rem; }
-    .weather-widget .forecast__temp {
-      font-size: 2rem; }
-    .weather-widget .forecast__panel {
-      display: flex;
-      flex: 2 1 0;
-      flex-direction: column;
-      justify-content: space-around;
-      padding: 1rem 0;
-      text-align: center; }
-      .weather-widget .forecast__panel .wi {
-        font-size: 2rem; }
-      .weather-widget .forecast__panel--city {
-        flex: 3 1 0;
-        font-weight: bold; }
-      .weather-widget .forecast__panel--today {
-        background: #f8f8f8; }
-  .weather-widget .form__field {
+        min-height: 6rem;
+    }
+
+.weather-widget .forecast__temp {
+    font-size: 2rem;
+}
+
+.weather-widget .forecast__panel {
+    display: flex;
+    flex: 2 1 0;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.weather-widget .forecast__panel:hover {
+    background-color: #f0f0f0;
+}
+
+.weather-widget .forecast__panel .wi {
+    font-size: 2rem;
+}
+
+.weather-widget .forecast__panel--city {
+    flex: 3 1 0;
+    font-weight: bold;
+}
+
+.weather-widget .forecast__panel--today {
+    background: #f8f8f8;
+}
+
+.weather-widget .form__field {
     align-items: center;
-    display: flex; }
+    display: flex;
+}
     .weather-widget .form__field :last-child {
       margin-left: auto; }
     .weather-widget .form__field label {
@@ -52,5 +69,3 @@
       margin: 0 0.5rem;
       padding: .25rem .5rem;
       width: 5rem; }
-
-/*# sourceMappingURL=index.css.map */

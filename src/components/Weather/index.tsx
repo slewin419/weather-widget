@@ -49,7 +49,11 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
         }
     }
 
-    renderWidget(forecast: Forecast) {
+    renderError(message: string) {
+
+    }
+
+    renderForecast(forecast: Forecast) {
         const todaysForecast = forecast.weather.shift();
 
         return (
@@ -80,7 +84,6 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
 
     render() {
         const {forecast, error, scale} = this.state;
-
         const checked = (scale === TemperatureScale.Fahrenheit);
 
         return (
@@ -111,7 +114,7 @@ class Weather extends React.Component<WeatherProps, WeatherWidgetState> {
                         </div>
                         <div className={`forecast  ${!forecast.cityName ? "forecast--loading" : ""}`}>
                             {forecast && forecast.cityName
-                                ? this.renderWidget(forecast)
+                                ? this.renderForecast(forecast)
                                 : error ?
                                     <h2>{error?.message}</h2>
                                     : <img className="forecast__loader" src={loader} alt="loading"/>
