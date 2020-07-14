@@ -2,8 +2,7 @@ import React from 'react';
 import './style/index.scss';
 import './style/weather-icons.min.css';
 import loader from './loader.gif';
-import OpenWeather, {Forecast} from '../OpenWeather';
-import {TemperatureScale} from "./types";
+import OpenWeather, {Forecast, TemperatureScale} from '../OpenWeather';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 
 type WeatherProps = {

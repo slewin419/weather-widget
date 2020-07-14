@@ -1,4 +1,8 @@
-import {TemperatureScale} from "../Weather/types";
+
+export enum TemperatureScale {
+    Fahrenheit,
+    Celsius
+}
 
 export interface OpenWeatherAPIResponse {
     city: {

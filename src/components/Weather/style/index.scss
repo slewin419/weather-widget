@@ -4,7 +4,8 @@
   
   &__container {
 	background-color: #f0f0f0;
-	min-width: 35rem;
+	width: 35rem;
+	max-width: 100vw;
 	padding: 2rem;
   }
   

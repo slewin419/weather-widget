@@ -67,7 +67,7 @@
       var toggleSoundBtn = document.getElementById('toggle-sound-btn'),
               backgroundMusicPlayer = document.getElementById('background-music-player');
 
-      //Sometimes this works and sometimes in doesnt  ¯\_(ツ)_/¯
+      //Sometimes this works and sometimes in doesnt ¯\_(ツ)_/¯
       backgroundMusicPlayer.addEventListener("canplay", function () {
         toggleSoundBtn.style.display = "inline";
         toggleSoundBtn.addEventListener('click', function () {
@@ -78,9 +78,9 @@
             backgroundMusicPlayer.muted = true;
             toggleSoundBtn.className = "fa fa-volume-off";
           }
-        });
 
-        backgroundMusicPlayer.play();
+          backgroundMusicPlayer.play();
+        });
       });
     })();
 
